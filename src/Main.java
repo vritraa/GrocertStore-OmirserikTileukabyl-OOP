@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    // Коллекции для хранения данных
     private static ArrayList<Product> products = new ArrayList<>();
     private static ArrayList<Transaction> transactions = new ArrayList<>();
     private static ArrayList<Customer> customers = new ArrayList<>();
