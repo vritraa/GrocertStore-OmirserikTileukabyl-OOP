@@ -3,13 +3,11 @@ public class StoreManager extends Staff {
     private boolean inventoryManaged;
 
     public StoreManager(String name, double salary) {
-        // Использование super() для вызова конструктора родителя
         super(name, "Store Manager", salary);
-        this.departmentCount = 5; // По умолчанию 5 отделов
+        this.departmentCount = 5;
         this.inventoryManaged = true;
     }
 
-    // @Override методы
     @Override
     public void work() {
         System.out.println(name + " is managing store operations and supervising staff...");
@@ -18,13 +16,11 @@ public class StoreManager extends Staff {
 
     @Override
     public double calculateBonus() {
-        // Бонус 15% + дополнительные за управление
-        double baseBonus = super.calculateBonus(); // Используем родительский метод
+        double baseBonus = super.calculateBonus();
         double managementBonus = departmentCount * 100;
         return baseBonus + managementBonus;
     }
 
-    // Дополнительные специфичные методы
     public void addDepartment() {
         departmentCount++;
         System.out.println(name + " added a new department. Total: " + departmentCount);
@@ -48,7 +44,6 @@ public class StoreManager extends Staff {
                 name, id, departmentCount, inventoryManaged ? "Yes" : "No");
     }
 
-    // Ещё один @Override метод
     @Override
     public String toString() {
         return getInfo();

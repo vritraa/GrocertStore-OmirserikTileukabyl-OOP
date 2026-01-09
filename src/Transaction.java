@@ -3,18 +3,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Transaction {
     private String transactionId;
     private String customerName;
-    private List<String> items;  // List of product names
+    private List<String> items;
     private double totalAmount;
     private String status;
     private LocalDateTime transactionDate;
 
-
     private static int transactionCounter = 2000;
-
 
     public Transaction(String customerName, List<String> items, double totalAmount, String status) {
         this.transactionId = "TRX-" + transactionCounter++;
@@ -25,21 +22,17 @@ public class Transaction {
         this.transactionDate = LocalDateTime.now();
     }
 
-
     public Transaction(String customerName, List<String> items) {
         this(customerName, items, calculateTotalAmount(items), "Pending");
     }
-
 
     public Transaction(String customerName) {
         this(customerName, new ArrayList<>(), 0.0, "Pending");
     }
 
-
     private static double calculateTotalAmount(List<String> items) {
         return items.size() * 0.0;
     }
-
 
     public String getTransactionId() {
         return transactionId;
@@ -104,21 +97,17 @@ public class Transaction {
         return this.status.equals("Pending");
     }
 
-
     public boolean isProcessing() {
         return this.status.equals("Processing");
     }
-
 
     public boolean isCompleted() {
         return this.status.equals("Completed");
     }
 
-
     public boolean isCancelled() {
         return this.status.equals("Cancelled");
     }
-
 
     public void startProcessing() {
         if (this.status.equals("Pending")) {
@@ -129,7 +118,6 @@ public class Transaction {
         }
     }
 
-
     public void addItem(String itemName) {
         if (this.status.equals("Completed") || this.status.equals("Cancelled")) {
             System.out.println("Cannot add items to a " + this.status.toLowerCase() + " transaction!");
@@ -139,6 +127,7 @@ public class Transaction {
         this.totalAmount += 1000;
         System.out.println("Added " + itemName + " to transaction " + transactionId);
     }
+
     public void removeItem(String itemName) {
         if (this.status.equals("Completed") || this.status.equals("Cancelled")) {
             System.out.println("Cannot remove items from a " + this.status.toLowerCase() + " transaction!");
@@ -152,7 +141,6 @@ public class Transaction {
         }
     }
 
-
     public void applyDiscount(double percentage) {
         if (percentage >= 0 && percentage <= 100) {
             double discount = this.totalAmount * (percentage / 100);
@@ -165,30 +153,30 @@ public class Transaction {
         }
     }
 
-
-
     public void printReceipt() {
         System.out.println("\n========== GROCERY STORE RECEIPT ==========");
         System.out.println("Transaction ID: " + this.transactionId);
         System.out.println("Customer: " + this.customerName);
-        System.out.println("Date: " + this.transactionDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        System.out.println("Date: " + this.transactionDate.format(
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         System.out.println("Status: " + this.status);
         System.out.println("\nItems Purchased:");
         for (int i = 0; i < items.size(); i++) {
             System.out.println("  " + (i + 1) + ". " + items.get(i));
         }
         System.out.println("\nSubtotal: " + String.format("%.2f", this.totalAmount) + " KZT");
-        System.out.println("Total: "  + " KZT");
+        System.out.println("Total: KZT");
         System.out.println("===========================================\n");
     }
-
 
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return String.format("Transaction[ID=%s, Customer='%s', Items=%d, Total=%.2f KZT, Status='%s', Date=%s]",
+        return String.format(
+                "Transaction[ID=%s, Customer='%s', Items=%d, Total=%.2f KZT, Status='%s', Date=%s]",
                 transactionId, customerName, items.size(), totalAmount, status,
-                transactionDate.format(formatter));
+                transactionDate.format(formatter)
+        );
     }
 
     public String getSummary() {

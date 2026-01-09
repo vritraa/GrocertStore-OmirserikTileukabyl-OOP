@@ -15,20 +15,16 @@ public class Customer {
     }
 
     public Customer(String name, String surname, String phoneNumber) {
-        this(name,surname, phoneNumber, 0);
+        this(name, surname, phoneNumber, 0);
     }
-
 
     public Customer() {
-        this("Unknown","Unknown2", "+77000000000", 0);
+        this("Unknown", "Unknown2", "+77000000000", 0);
     }
-
-
 
     public int getCustomerId() {
         return customerId;
     }
-
 
     public String getName() {
         return name;
@@ -37,6 +33,7 @@ public class Customer {
     public String getSurname() {
         return surname;
     }
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -108,10 +105,6 @@ public class Customer {
         return this.name + " " + this.surname + " | Phone: " + this.phoneNumber;
     }
 
-
-
-
-
     public double getLoyaltyDiscount() {
         if (isVIP()) {
             return 10.0;
@@ -132,12 +125,13 @@ public class Customer {
         System.out.println("Contact Info: " + getContactInfo());
         System.out.println("Eligible Discount: " + getLoyaltyDiscount() + "%");
     }
+
     @Override
     public String toString() {
         String vipStatus = isVIP() ? "VIP" : "Regular";
-        return String.format("Customer[ID=%d, Name='%s', Phone='%s', Points=%d, Status=%s]",
-                customerId, name, phoneNumber, loyaltyPoints, vipStatus);
+        return String.format(
+                "Customer[ID=%d, Name='%s', Phone='%s', Points=%d, Status=%s]",
+                customerId, name, phoneNumber, loyaltyPoints, vipStatus
+        );
     }
-
-
 }

@@ -6,7 +6,6 @@ public class Staff {
     protected String position;
     protected double salary;
 
-    // Конструктор с валидацией
     public Staff(String name, String position, double salary) {
         this.id = UUID.randomUUID().toString().substring(0, 8);
         setName(name);
@@ -14,7 +13,6 @@ public class Staff {
         setSalary(salary);
     }
 
-    // Валидирующие сеттеры
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be empty");
@@ -36,19 +34,17 @@ public class Staff {
         this.salary = salary;
     }
 
-    // Геттеры
     public String getId() { return id; }
     public String getName() { return name; }
     public String getPosition() { return position; }
     public double getSalary() { return salary; }
 
-    // Методы для переопределения
     public void work() {
         System.out.println(name + " is working as " + position);
     }
 
     public double calculateBonus() {
-        return salary * 0.05; // 5% базовый бонус
+        return salary * 0.05;
     }
 
     public String getInfo() {

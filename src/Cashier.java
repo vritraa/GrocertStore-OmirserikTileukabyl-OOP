@@ -3,13 +3,11 @@ public class Cashier extends Staff {
     private double dailyRevenue;
 
     public Cashier(String name, double salary) {
-        // Использование super() для вызова конструктора родителя
         super(name, "Cashier", salary);
         this.transactionsProcessed = 0;
         this.dailyRevenue = 0;
     }
 
-    // @Override методы
     @Override
     public void work() {
         System.out.println(name + " is scanning items and processing payments...");
@@ -18,13 +16,11 @@ public class Cashier extends Staff {
 
     @Override
     public double calculateBonus() {
-        // Бонус 10% + дополнительные за транзакции
-        double baseBonus = super.calculateBonus(); // Используем родительский метод
+        double baseBonus = super.calculateBonus();
         double transactionBonus = transactionsProcessed * 0.50;
         return baseBonus + transactionBonus;
     }
 
-    // Дополнительные специфичные методы
     public void processPayment(double amount) {
         dailyRevenue += amount;
         transactionsProcessed++;
@@ -46,7 +42,6 @@ public class Cashier extends Staff {
                 name, id, transactionsProcessed, dailyRevenue);
     }
 
-    // Ещё один @Override метод
     @Override
     public String toString() {
         return getInfo();
