@@ -183,7 +183,7 @@ public class Main {
         viewAllProducts();
         if (products.isEmpty()) return;
 
-        int index = readInt("Select product number for discount: ") - 1;
+        int index = readInt("Select productt number for discount: ") - 1;
         if (index < 0 || index >= products.size()) {
             System.out.println("Invalid selection!");
             return;
